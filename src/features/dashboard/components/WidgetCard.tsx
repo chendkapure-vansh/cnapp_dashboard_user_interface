@@ -1,5 +1,6 @@
 import { X } from 'lucide-react'
 import { useAppDispatch } from '@/app/hooks'
+import { WidgetRenderer } from '@/features/dashboard/components/widgets/WidgetRenderer'
 import { removeWidget } from '@/features/dashboard/dashboardSlice'
 import type { CategoryId, Widget } from '@/types/dashboard.types'
 
@@ -30,8 +31,8 @@ export function WidgetCard({ categoryId, widget }: WidgetCardProps) {
         </button>
       </div>
 
-      <div className="mt-3 flex flex-1 items-center justify-center text-xs text-slate-400">
-        <span className="italic">{widget.type} widget placeholder</span>
+      <div className="mt-2 flex flex-1 items-center justify-center">
+        <WidgetRenderer widget={widget} />
       </div>
     </div>
   )
