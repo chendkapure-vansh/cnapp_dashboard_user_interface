@@ -1,0 +1,163 @@
+{
+  "categories": [
+    {
+      "id": "cspm",
+      "name": "CSPM Executive Dashboard",
+      "tabLabel": "CSPM",
+      "widgets": [
+        {
+          "id": "cloud-accounts",
+          "name": "Cloud Accounts",
+          "isActive": true,
+          "type": "donut",
+          "total": 2,
+          "segments": [
+            {
+              "label": "Connected",
+              "value": 2,
+              "color": "blue"
+            },
+            {
+              "label": "Not Connected",
+              "value": 2,
+              "color": "lightBlue"
+            }
+          ]
+        },
+        {
+          "id": "cloud-account-risk-assessment",
+          "name": "Cloud Account Risk Assessment",
+          "isActive": true,
+          "type": "donut",
+          "total": 9659,
+          "segments": [
+            {
+              "label": "Failed",
+              "value": 1689,
+              "color": "red"
+            },
+            {
+              "label": "Warning",
+              "value": 681,
+              "color": "amber"
+            },
+            {
+              "label": "Not available",
+              "value": 36,
+              "color": "grey"
+            },
+            {
+              "label": "Passed",
+              "value": 7253,
+              "color": "green"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cwpp",
+      "name": "CWPP Dashboard:",
+      "tabLabel": "CWPP",
+      "widgets": [
+        {
+          "id": "top-5-namespace-alerts",
+          "name": "Top 5 Namespace Specific Alerts",
+          "isActive": true,
+          "type": "empty",
+          "message": "No Graph data available!"
+        },
+        {
+          "id": "workload-alerts",
+          "name": "Workload Alerts",
+          "isActive": true,
+          "type": "empty",
+          "message": "No Graph data available!"
+        }
+      ]
+    },
+    {
+      "id": "registry",
+      "name": "Registry Scan",
+      "tabLabel": "Image",
+      "widgets": [
+        {
+          "id": "image-risk-assessment",
+          "name": "Image Risk Assessment",
+          "isActive": true,
+          "type": "stackedBar",
+          "total": 1470,
+          "totalLabel": "Total Vulnerabilities",
+          "segments": [
+            {
+              "label": "Critical",
+              "value": 9,
+              "color": "darkRed"
+            },
+            {
+              "label": "High",
+              "value": 150,
+              "color": "red"
+            },
+            {
+              "label": "Medium",
+              "value": 640,
+              "color": "orange"
+            },
+            {
+              "label": "Low",
+              "value": 600,
+              "color": "amber"
+            },
+            {
+              "label": "Unknown",
+              "value": 71,
+              "color": "grey"
+            }
+          ]
+        },
+        {
+          "id": "image-security-issues",
+          "name": "Image Security Issues",
+          "isActive": true,
+          "type": "stackedBar",
+          "total": 2,
+          "totalLabel": "Total images",
+          "segments": [
+            {
+              "label": "Critical",
+              "value": 2,
+              "color": "darkRed"
+            },
+            {
+              "label": "High",
+              "value": 2,
+              "color": "red"
+            },
+            {
+              "label": "Medium",
+              "value": 1,
+              "color": "orange"
+            },
+            {
+              "label": "Low",
+              "value": 1,
+              "color": "amber"
+            },
+            {
+              "label": "Unknown",
+              "value": 1,
+              "color": "grey"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ticket",
+      "name": "Ticket",
+      "tabLabel": "Ticket",
+      "widgets": []
+    }
+  ]
+}
