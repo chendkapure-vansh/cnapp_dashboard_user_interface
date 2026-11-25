@@ -4,6 +4,7 @@ import { DashboardHeader } from '@/features/dashboard/components/DashboardHeader
 import { TopBar } from '@/features/dashboard/components/TopBar'
 import { selectCategories } from '@/features/dashboard/selectors'
 import { shouldShowCategory } from '@/features/dashboard/utils/categoryVisibility'
+import { AddWidgetDrawer } from '@/features/widget-drawer/components/AddWidgetDrawer'
 
 export function DashboardPage() {
   const categories = useAppSelector(selectCategories)
@@ -22,6 +23,8 @@ export function DashboardPage() {
           ))}
         </div>
       </main>
+
+      <AddWidgetDrawer />
     </div>
   )
 }

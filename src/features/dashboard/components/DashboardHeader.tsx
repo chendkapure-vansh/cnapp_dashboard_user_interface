@@ -1,6 +1,10 @@
 import { ChevronDown, Clock, MoreVertical, RotateCw } from 'lucide-react'
+import { useAppDispatch } from '@/app/hooks'
+import { openDrawer } from '@/features/widget-drawer/drawerSlice'
 
 export function DashboardHeader() {
+  const dispatch = useAppDispatch()
+
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 py-4">
       <h1 className="text-xl font-bold tracking-tight text-navy">
@@ -10,6 +14,7 @@ export function DashboardHeader() {
       <div className="flex items-center gap-3">
         <button
           type="button"
+          onClick={() => dispatch(openDrawer('cspm'))}
           className="flex items-center gap-1.5 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
         >
           Add Widget +

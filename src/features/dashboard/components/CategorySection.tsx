@@ -28,7 +28,7 @@ export function CategorySection({ category }: CategorySectionProps) {
           />
         ))}
 
-        <AddWidgetPlaceholder />
+        <AddWidgetPlaceholder categoryId={category.id} />
       </div>
     </section>
   )

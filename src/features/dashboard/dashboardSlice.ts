@@ -30,6 +30,18 @@ interface WidgetTargetPayload {
   widgetId: string
 }
 
+export interface NewDrawerWidgetPayload {
+  categoryId: CategoryId
+  name: string
+  text: string
+  id: string
+}
+
+export interface ApplyDrawerChangesPayload {
+  activeStates: Record<string, boolean>
+  newWidgets: NewDrawerWidgetPayload[]
+}
+
 function findWidgetInCategory(
   categories: Category[],
   categoryId: CategoryId,
@@ -103,8 +115,52 @@ export const dashboardSlice = createSlice({
       }
       widget.isActive = !widget.isActive
     },
+    applyDrawerChanges(
+      state,
+      action: PayloadAction<ApplyDrawerChangesPayload>
+    ) {
+      const { activeStates, newWidgets } = action.payload
+
+      // Update existing widgets whose IDs appear in activeStates
+      for (const category of state.categories) {
+        for (const widget of category.widgets) {
+          if (Object.prototype.hasOwnProperty.call(activeStates, widget.id)) {
+            widget.isActive = activeStates[widget.id]
+          }
+        }
+      }
+
+      // Append new text widgets
+      for (const draft of newWidgets) {
+        const name = draft.name.trim()
+        const text = draft.text.trim()
+        if (!name || !text || !draft.id) {
+          continue
+        }
+
+        const category = state.categories.find(
+          (cat) => cat.id === draft.categoryId
+        )
+        if (!category) {
+          continue
+        }
+
+        const newWidget: TextWidget = {
+          id: draft.id,
+          name,
+          isActive: Object.prototype.hasOwnProperty.call(activeStates, draft.id)
+            ? activeStates[draft.id]
+            : true,
+          type: 'text',
+          text,
+        }
+
+        category.widgets.push(newWidget)
+      }
+    },
   },
 })
 
-export const { addWidget, removeWidget, toggleWidget } = dashboardSlice.actions
+export const { addWidget, removeWidget, toggleWidget, applyDrawerChanges } =
+  dashboardSlice.actions
 export default dashboardSlice.reducer
