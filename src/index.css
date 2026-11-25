@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Poppins', sans-serif;
+  --color-navy: #0f1a5c;
+  --color-primary: #0f1a5c;
+  --color-canvas: #f0f4f9;
+  --color-red: #c8202a;
+  --color-amber: #f5c542;
+  --color-green: #1fa75a;
+  --color-blue: #4f7cff;
+  --color-grey: #c9ced6;
+  --radius-card: 16px;
+}
