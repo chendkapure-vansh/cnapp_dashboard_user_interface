@@ -30,7 +30,7 @@ describe('dashboardSlice and selectors', () => {
         categoryId: 'cspm',
         name: 'Custom Widget',
         text: 'Sample description',
-      }),
+      })
     )
 
     const state = testStore.getState()
@@ -38,7 +38,7 @@ describe('dashboardSlice and selectors', () => {
     expect(cspmCategory).toBeDefined()
 
     const addedWidget = cspmCategory?.widgets.find(
-      (w) => w.name === 'Custom Widget',
+      (w) => w.name === 'Custom Widget'
     ) as TextWidget | undefined
 
     expect(addedWidget).toBeDefined()
@@ -59,10 +59,10 @@ describe('dashboardSlice and selectors', () => {
         categoryId: 'cspm',
         name: '   ',
         text: 'Valid text',
-      }),
+      })
     )
     expect(
-      selectCategoryById(testStore.getState(), 'cspm')?.widgets.length,
+      selectCategoryById(testStore.getState(), 'cspm')?.widgets.length
     ).toBe(initialWidgetCount)
 
     testStore.dispatch(
@@ -70,10 +70,10 @@ describe('dashboardSlice and selectors', () => {
         categoryId: 'cspm',
         name: 'Valid Name',
         text: '   ',
-      }),
+      })
     )
     expect(
-      selectCategoryById(testStore.getState(), 'cspm')?.widgets.length,
+      selectCategoryById(testStore.getState(), 'cspm')?.widgets.length
     ).toBe(initialWidgetCount)
   })
 
@@ -86,7 +86,7 @@ describe('dashboardSlice and selectors', () => {
         categoryId: 'non-existent' as unknown as CategoryId,
         name: 'N',
         text: 'T',
-      }),
+      })
     )
 
     expect(testStore.getState().dashboard).toEqual(previousState)
@@ -114,13 +114,13 @@ describe('dashboardSlice and selectors', () => {
     testStore.dispatch(toggleWidget({ categoryId, widgetId }))
     let widget = selectCategoryById(
       testStore.getState(),
-      categoryId,
+      categoryId
     )?.widgets.find((w) => w.id === widgetId)
     expect(widget?.isActive).toBe(false)
 
     testStore.dispatch(toggleWidget({ categoryId, widgetId }))
     widget = selectCategoryById(testStore.getState(), categoryId)?.widgets.find(
-      (w) => w.id === widgetId,
+      (w) => w.id === widgetId
     )
     expect(widget?.isActive).toBe(true)
   })
@@ -131,22 +131,22 @@ describe('dashboardSlice and selectors', () => {
 
     expect(() => {
       testStore.dispatch(
-        removeWidget({ categoryId: 'cspm', widgetId: 'unknown-widget' }),
+        removeWidget({ categoryId: 'cspm', widgetId: 'unknown-widget' })
       )
       testStore.dispatch(
         removeWidget({
           categoryId: 'unknown-cat' as unknown as CategoryId,
           widgetId: 'w',
-        }),
+        })
       )
       testStore.dispatch(
-        toggleWidget({ categoryId: 'cspm', widgetId: 'unknown-widget' }),
+        toggleWidget({ categoryId: 'cspm', widgetId: 'unknown-widget' })
       )
       testStore.dispatch(
         toggleWidget({
           categoryId: 'unknown-cat' as unknown as CategoryId,
           widgetId: 'w',
-        }),
+        })
       )
     }).not.toThrow()
 
@@ -214,17 +214,17 @@ describe('dashboardSlice and selectors', () => {
             text: 'Some Text',
           },
         ],
-      }),
+      })
     )
 
     const state = testStore.getState()
     const cloudAccounts = selectCategoryById(state, 'cspm')?.widgets.find(
-      (w) => w.id === 'cloud-accounts',
+      (w) => w.id === 'cloud-accounts'
     )
     expect(cloudAccounts?.isActive).toBe(false)
 
     const newWidget = selectCategoryById(state, 'cwpp')?.widgets.find(
-      (w) => w.id === 'new-drawer-widget',
+      (w) => w.id === 'new-drawer-widget'
     )
     expect(newWidget).toBeDefined()
     expect(newWidget?.name).toBe('New CWPP Widget')
@@ -252,12 +252,12 @@ describe('dashboardSlice and selectors', () => {
   it('selectAllWidgets includes inactive widgets', () => {
     const testStore = createAppStore()
     testStore.dispatch(
-      removeWidget({ categoryId: 'cspm', widgetId: 'cloud-accounts' }),
+      removeWidget({ categoryId: 'cspm', widgetId: 'cloud-accounts' })
     )
 
     const allWidgets = selectAllWidgets(testStore.getState())
     const target = allWidgets.find(
-      (item) => item.widget.id === 'cloud-accounts',
+      (item) => item.widget.id === 'cloud-accounts'
     )
 
     expect(target).toBeDefined()
@@ -267,7 +267,7 @@ describe('dashboardSlice and selectors', () => {
     const categories = selectCategories(testStore.getState())
     const totalCount = categories.reduce(
       (sum, cat) => sum + cat.widgets.length,
-      0,
+      0
     )
     expect(allWidgets).toHaveLength(totalCount)
   })

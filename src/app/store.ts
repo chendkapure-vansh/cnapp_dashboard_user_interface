@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import dashboardReducer from '@/features/dashboard/dashboardSlice'
+import searchReducer from '@/features/search/searchSlice'
 import drawerReducer from '@/features/widget-drawer/drawerSlice'
 
 const rootReducer = combineReducers({
   dashboard: dashboardReducer,
   drawer: drawerReducer,
+  search: searchReducer,
 })
 
 export function createAppStore(preloadedState?: Record<string, unknown>) {

@@ -1,8 +1,13 @@
 import { Bell, Search } from 'lucide-react'
-import { useState } from 'react'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import {
+  selectDashboardQuery,
+  setDashboardQuery,
+} from '@/features/search/searchSlice'
 
 export function TopBar() {
-  const [searchTerm, setSearchTerm] = useState('')
+  const dispatch = useAppDispatch()
+  const dashboardQuery = useAppSelector(selectDashboardQuery)
 
   return (
     <header className="flex h-14 w-full items-center justify-between border-b border-grey/40 bg-white px-6">
@@ -20,8 +25,9 @@ export function TopBar() {
         />
         <input
           type="search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={dashboardQuery}
+          onChange={(e) => dispatch(setDashboardQuery(e.target.value))}
+          aria-label="Search dashboard widgets"
           placeholder="Search anything..."
           className="h-8 w-full rounded-md border border-slate-200 bg-canvas/60 pl-9 pr-3 text-xs text-slate-700 outline-none transition focus:border-blue focus:bg-white"
         />

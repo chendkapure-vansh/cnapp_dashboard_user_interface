@@ -1,49 +1,48 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { CreateWidgetForm } from '@/features/widget-drawer/components/CreateWidgetForm'
 import { DrawerFooter } from '@/features/widget-drawer/components/DrawerFooter'
 import { DrawerHeader } from '@/features/widget-drawer/components/DrawerHeader'
+import { DrawerSearch } from '@/features/widget-drawer/components/DrawerSearch'
 import { DrawerTabs } from '@/features/widget-drawer/components/DrawerTabs'
 import { WidgetChecklist } from '@/features/widget-drawer/components/WidgetChecklist'
 import { closeDrawer } from '@/features/widget-drawer/drawerSlice'
-import { selectIsDrawerOpen } from '@/features/widget-drawer/selectors'
+import {
+  selectActiveTab,
+  selectIsDrawerOpen,
+} from '@/features/widget-drawer/selectors'
 
-export function AddWidgetDrawer() {
-  const dispatch = useAppDispatch()
-  const isOpen = useAppSelector(selectIsDrawerOpen)
-  const previousActiveElement = useRef<HTMLElement | null>(null)
+interface DrawerContentProps {
+  onClose: () => void
+}
+
+function DrawerContent({ onClose }: DrawerContentProps) {
+  const activeTab = useAppSelector(selectActiveTab)
+  const [drawerQuery, setDrawerQuery] = useState('')
   const panelRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (isOpen) {
-      previousActiveElement.current = document.activeElement as HTMLElement
-      // Move focus into panel
-      panelRef.current?.focus()
+    panelRef.current?.focus()
 
-      function handleKeyDown(e: KeyboardEvent) {
-        if (e.key === 'Escape') {
-          dispatch(closeDrawer())
-        }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        onClose()
       }
-
-      window.addEventListener('keydown', handleKeyDown)
-      return () => {
-        window.removeEventListener('keydown', handleKeyDown)
-      }
-    } else if (previousActiveElement.current) {
-      previousActiveElement.current.focus()
     }
-  }, [isOpen, dispatch])
 
-  if (!isOpen) {
-    return null
-  }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [onClose])
+
+  const isSearching = drawerQuery.trim().length > 0
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       {/* Backdrop */}
       <div
-        onClick={() => dispatch(closeDrawer())}
+        onClick={onClose}
         className="fixed inset-0 bg-slate-900/40 backdrop-blur-[1px] transition-opacity"
         aria-hidden="true"
       />
@@ -68,12 +67,35 @@ export function AddWidgetDrawer() {
         <DrawerTabs />
 
         <div className="flex-1 overflow-y-auto px-6 py-4">
-          <WidgetChecklist />
-          <CreateWidgetForm />
+          <DrawerSearch query={drawerQuery} onQueryChange={setDrawerQuery} />
+
+          <WidgetChecklist activeTab={activeTab} searchQuery={drawerQuery} />
+
+          {!isSearching && <CreateWidgetForm />}
         </div>
 
         <DrawerFooter />
       </div>
     </div>
   )
+}
+
+export function AddWidgetDrawer() {
+  const dispatch = useAppDispatch()
+  const isOpen = useAppSelector(selectIsDrawerOpen)
+  const previousActiveElement = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    if (isOpen) {
+      previousActiveElement.current = document.activeElement as HTMLElement
+    } else if (previousActiveElement.current) {
+      previousActiveElement.current.focus()
+    }
+  }, [isOpen])
+
+  if (!isOpen) {
+    return null
+  }
+
+  return <DrawerContent onClose={() => dispatch(closeDrawer())} />
 }
