@@ -1,8 +1,32 @@
-import { DonutWidget } from '@/features/dashboard/components/widgets/DonutWidget'
+import { lazy, Suspense } from 'react'
 import { EmptyWidget } from '@/features/dashboard/components/widgets/EmptyWidget'
-import { StackedBarWidget } from '@/features/dashboard/components/widgets/StackedBarWidget'
 import { TextWidget } from '@/features/dashboard/components/widgets/TextWidget'
 import type { Widget } from '@/types/dashboard.types'
+
+const LazyDonutWidget = lazy(() =>
+  import('@/features/dashboard/components/widgets/DonutWidget').then((m) => ({
+    default: m.DonutWidget,
+  }))
+)
+
+const LazyStackedBarWidget = lazy(() =>
+  import('@/features/dashboard/components/widgets/StackedBarWidget').then(
+    (m) => ({
+      default: m.StackedBarWidget,
+    })
+  )
+)
+
+function WidgetSkeleton() {
+  return (
+    <div
+      data-testid="widget-skeleton"
+      className="flex h-36 w-full items-center justify-center"
+    >
+      <div className="h-28 w-full animate-pulse rounded-lg bg-slate-100" />
+    </div>
+  )
+}
 
 interface WidgetRendererProps {
   widget: Widget
@@ -11,9 +35,17 @@ interface WidgetRendererProps {
 export function WidgetRenderer({ widget }: WidgetRendererProps) {
   switch (widget.type) {
     case 'donut':
-      return <DonutWidget widget={widget} />
+      return (
+        <Suspense fallback={<WidgetSkeleton />}>
+          <LazyDonutWidget widget={widget} />
+        </Suspense>
+      )
     case 'stackedBar':
-      return <StackedBarWidget widget={widget} />
+      return (
+        <Suspense fallback={<WidgetSkeleton />}>
+          <LazyStackedBarWidget widget={widget} />
+        </Suspense>
+      )
     case 'empty':
       return <EmptyWidget message={widget.message} />
     case 'text':

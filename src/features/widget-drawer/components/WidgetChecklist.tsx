@@ -34,13 +34,16 @@ export function WidgetChecklist({
     const filtered = filterWidgetsByQuery(allRows, searchQuery)
     if (filtered.length === 0) {
       return (
-        <div className="py-8 text-center text-xs text-slate-400">
+        <div
+          role="status"
+          aria-live="polite"
+          className="py-8 text-center text-xs text-slate-400"
+        >
           No widgets found.
         </div>
       )
     }
 
-    // Group filtered rows by categoryTabLabel
     const grouped = new Map<string, typeof filtered>()
     for (const row of filtered) {
       const list = grouped.get(row.categoryTabLabel) || []
@@ -64,6 +67,7 @@ export function WidgetChecklist({
                   <input
                     type="checkbox"
                     checked={row.checked}
+                    aria-label={row.name}
                     onChange={() => handleToggle(row.id, row.checked)}
                     className="h-4 w-4 rounded border-slate-300 text-navy accent-navy focus:ring-navy"
                   />
@@ -105,6 +109,7 @@ export function WidgetChecklist({
           <input
             type="checkbox"
             checked={row.checked}
+            aria-label={row.name}
             onChange={() => {
               const widget = category?.widgets.find((w) => w.id === row.id)
               const currentVal = widget ? widget.isActive : row.checked

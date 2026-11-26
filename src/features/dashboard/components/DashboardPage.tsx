@@ -22,11 +22,15 @@ export function DashboardPage() {
     <div className="min-h-screen bg-canvas font-sans text-slate-900">
       <TopBar />
 
-      <main className="mx-auto max-w-[1440px] space-y-6 px-6 pb-12">
+      <main className="mx-auto max-w-[1440px] space-y-6 px-4 pb-12 sm:px-6">
         <DashboardHeader />
 
         {hasNoMatches ? (
-          <div className="py-16 text-center text-sm font-medium text-slate-400">
+          <div
+            role="status"
+            aria-live="polite"
+            className="py-16 text-center text-sm font-medium text-slate-400"
+          >
             No widgets match your search.
           </div>
         ) : (

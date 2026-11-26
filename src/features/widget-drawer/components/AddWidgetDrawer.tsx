@@ -7,6 +7,7 @@ import { DrawerSearch } from '@/features/widget-drawer/components/DrawerSearch'
 import { DrawerTabs } from '@/features/widget-drawer/components/DrawerTabs'
 import { WidgetChecklist } from '@/features/widget-drawer/components/WidgetChecklist'
 import { closeDrawer } from '@/features/widget-drawer/drawerSlice'
+import { useFocusTrap } from '@/features/widget-drawer/hooks/useFocusTrap'
 import {
   selectActiveTab,
   selectIsDrawerOpen,
@@ -21,7 +22,13 @@ function DrawerContent({ onClose }: DrawerContentProps) {
   const [drawerQuery, setDrawerQuery] = useState('')
   const panelRef = useRef<HTMLDivElement | null>(null)
 
+  useFocusTrap(panelRef, true)
+
   useEffect(() => {
+    // Lock body scroll
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
     panelRef.current?.focus()
 
     function handleKeyDown(e: KeyboardEvent) {
@@ -32,6 +39,7 @@ function DrawerContent({ onClose }: DrawerContentProps) {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => {
+      document.body.style.overflow = originalOverflow
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [onClose])

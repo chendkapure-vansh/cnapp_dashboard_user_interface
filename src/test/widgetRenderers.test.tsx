@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { DonutWidget as ConcreteDonutWidget } from '@/features/dashboard/components/widgets/DonutWidget'
+import { StackedBarWidget as ConcreteStackedBarWidget } from '@/features/dashboard/components/widgets/StackedBarWidget'
 import { WidgetRenderer } from '@/features/dashboard/components/widgets/WidgetRenderer'
 import type {
   DonutWidget,
@@ -9,7 +11,7 @@ import type {
 } from '@/types/dashboard.types'
 
 describe('WidgetRenderers', () => {
-  it('Donut shows its total ("2", "9659") and legend text', () => {
+  it('Donut shows its total ("2", "9659") and legend text', async () => {
     const donut1: DonutWidget = {
       id: 'cloud-accounts',
       name: 'Cloud Accounts',
@@ -22,7 +24,7 @@ describe('WidgetRenderers', () => {
       ],
     }
 
-    const { rerender } = render(<WidgetRenderer widget={donut1} />)
+    const { rerender } = render(<ConcreteDonutWidget widget={donut1} />)
     expect(screen.getByText('2')).toBeInTheDocument()
     expect(screen.getByText('Connected (2)')).toBeInTheDocument()
     expect(screen.getByText('Not Connected (2)')).toBeInTheDocument()
@@ -41,7 +43,7 @@ describe('WidgetRenderers', () => {
       ],
     }
 
-    rerender(<WidgetRenderer widget={donut2} />)
+    rerender(<ConcreteDonutWidget widget={donut2} />)
     expect(screen.getByText('9659')).toBeInTheDocument()
     expect(screen.getByText('Failed (1689)')).toBeInTheDocument()
     expect(screen.getByText('Passed (7253)')).toBeInTheDocument()
@@ -62,9 +64,9 @@ describe('WidgetRenderers', () => {
       ],
     }
 
-    render(<WidgetRenderer widget={bar} />)
-    expect(screen.getByText('1470')).toBeInTheDocument()
+    render(<ConcreteStackedBarWidget widget={bar} />)
     expect(screen.getByText('Total Vulnerabilities')).toBeInTheDocument()
+    expect(screen.getByText('1470')).toBeInTheDocument()
     expect(screen.getByText('Critical (9)')).toBeInTheDocument()
     expect(screen.getByText('High (150)')).toBeInTheDocument()
   })
@@ -84,7 +86,7 @@ describe('WidgetRenderers', () => {
       ],
     }
 
-    render(<WidgetRenderer widget={bar} />)
+    render(<ConcreteStackedBarWidget widget={bar} />)
     const seg1 = screen.getByTestId('bar-segment-Part1')
     const seg2 = screen.getByTestId('bar-segment-Part2')
     const seg3 = screen.getByTestId('bar-segment-Part3')
@@ -134,7 +136,7 @@ describe('WidgetRenderers', () => {
       segments: [],
     }
 
-    const { rerender } = render(<WidgetRenderer widget={emptyDonut} />)
+    const { rerender } = render(<ConcreteDonutWidget widget={emptyDonut} />)
     expect(screen.getByText('No Graph data available!')).toBeInTheDocument()
 
     const emptyBar: StackedBarWidget = {
@@ -147,7 +149,7 @@ describe('WidgetRenderers', () => {
       segments: [],
     }
 
-    rerender(<WidgetRenderer widget={emptyBar} />)
+    rerender(<ConcreteStackedBarWidget widget={emptyBar} />)
     expect(screen.getByText('No Graph data available!')).toBeInTheDocument()
 
     const zeroSumDonut: DonutWidget = {
@@ -159,7 +161,7 @@ describe('WidgetRenderers', () => {
       segments: [{ label: 'Zero', value: 0, color: 'blue' }],
     }
 
-    rerender(<WidgetRenderer widget={zeroSumDonut} />)
+    rerender(<ConcreteDonutWidget widget={zeroSumDonut} />)
     expect(screen.getByText('No Graph data available!')).toBeInTheDocument()
   })
 })
