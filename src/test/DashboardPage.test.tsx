@@ -18,6 +18,7 @@ function renderWithStore(preloadedDashboard?: any) {
   return { ...utils, store }
 }
 
+// Tests for DashboardPage sections, initial active widgets, card removal, and category visibility
 describe('DashboardPage', () => {
   it('renders the 3 section headings and the 6 widget titles', () => {
     renderWithStore()

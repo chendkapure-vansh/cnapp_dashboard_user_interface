@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { createAppStore } from '@/app/store'
 import App from '@/App'
 
+// Tests for root App component mounting and initial heading rendering
 describe('App', () => {
   it('renders the CNAPP Dashboard heading', () => {
     const store = createAppStore()

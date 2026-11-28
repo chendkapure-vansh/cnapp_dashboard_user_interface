@@ -10,11 +10,17 @@ import type {
 } from '@/features/widget-drawer/drawerSlice'
 import type { Category, CategoryId } from '@/types/dashboard.types'
 
+/**
+ * Root state interface required by drawer selectors.
+ */
 export interface RootDrawerState {
   dashboard: DashboardState
   drawer: DrawerState
 }
 
+/**
+ * Representation of a single widget item in the drawer checklist.
+ */
 export interface DrawerRow {
   id: string
   name: string
@@ -22,24 +28,42 @@ export interface DrawerRow {
   isNew: boolean
 }
 
+/**
+ * Checklist item enhanced with category metadata for global drawer search results.
+ */
 export interface CategorizedDrawerRow extends DrawerRow {
   categoryId: CategoryId
   categoryTabLabel: string
 }
 
+/**
+ * Selects whether the Add Widget drawer is currently open.
+ */
 export const selectIsDrawerOpen = (state: RootDrawerState): boolean =>
   state.drawer.isOpen
 
+/**
+ * Selects the active category tab in the drawer.
+ */
 export const selectActiveTab = (state: RootDrawerState): CategoryId =>
   state.drawer.activeTab
 
+/**
+ * Selects the staged active checkbox states before user confirmation.
+ */
 export const selectDraftActive = (
   state: RootDrawerState
 ): Record<string, boolean> => state.drawer.draftActive
 
+/**
+ * Selects the list of newly drafted widgets created in the current drawer session.
+ */
 export const selectDraftNewWidgets = (state: RootDrawerState): DraftWidget[] =>
   state.drawer.draftNewWidgets
 
+/**
+ * Pure helper function building checklist rows combining existing category widgets and drafted additions.
+ */
 export function buildDrawerRowsForCategory(
   category: Category | undefined,
   tabId: CategoryId,
@@ -75,6 +99,9 @@ export function buildDrawerRowsForCategory(
   return [...existingRows, ...newRows]
 }
 
+/**
+ * Memoized selector returning all checklist rows for a specific category tab.
+ */
 export const selectDrawerRows = createSelector(
   [
     (state: RootDrawerState, tabId: CategoryId) =>
@@ -93,6 +120,9 @@ export const selectDrawerRows = createSelector(
   }
 )
 
+/**
+ * Memoized selector returning checklist rows across all categories for drawer search filtering.
+ */
 export const selectAllDrawerRows = createSelector(
   [selectCategories, selectDraftActive, selectDraftNewWidgets],
   (categories, draftActive, draftNewWidgets): CategorizedDrawerRow[] => {

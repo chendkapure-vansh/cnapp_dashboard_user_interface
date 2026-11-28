@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { createAppStore } from '@/app/store'
 import { DashboardPage } from '@/features/dashboard/components/DashboardPage'
 
+// Tests verifying state parity between card X button removal and drawer uncheck-confirm flow
 describe('Phase 7: remove-path synchronization', () => {
   it('removing via card X and via drawer uncheck + Confirm produce the same store state', () => {
     // 1. Remove via Card X

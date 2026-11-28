@@ -2,6 +2,9 @@ import { Bell } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { useDismissable } from '@/features/ui/hooks/useDismissable'
 
+/**
+ * Header button displaying notification icon and opening a dismissal popover dialog.
+ */
 export function NotificationBell() {
   const [isOpen, setIsOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)

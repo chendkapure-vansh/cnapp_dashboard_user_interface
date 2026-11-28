@@ -1,5 +1,13 @@
 import { type RefObject, useEffect } from 'react'
 
+/**
+ * Hook that listens for outside clicks and Escape key presses to dismiss an overlay or menu.
+ * Automatically cleans up event listeners when closed or unmounted.
+ *
+ * @param ref - Reference to the root container element to keep open
+ * @param isOpen - Boolean indicating if the overlay is visible
+ * @param onClose - Callback invoked to close the overlay
+ */
 export function useDismissable<T extends HTMLElement = HTMLElement>(
   ref: RefObject<T | null>,
   isOpen: boolean,

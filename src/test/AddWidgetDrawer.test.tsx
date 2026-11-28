@@ -14,6 +14,7 @@ function renderDashboardPage() {
   return { ...utils, store }
 }
 
+// Integration tests for opening the drawer, tab navigation, checklist toggling, and new widget creation
 describe('AddWidgetDrawer integration', () => {
   it('header button opens drawer on CSPM tab', () => {
     renderDashboardPage()

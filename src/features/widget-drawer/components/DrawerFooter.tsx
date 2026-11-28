@@ -2,6 +2,9 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { confirmDrawer } from '@/features/widget-drawer/confirmDrawer'
 import { closeDrawer } from '@/features/widget-drawer/drawerSlice'
 
+/**
+ * Footer controls for the Add Widget drawer with Cancel and Confirm buttons.
+ */
 export function DrawerFooter() {
   const dispatch = useAppDispatch()
   const draftActive = useAppSelector((s) => s.drawer.draftActive)

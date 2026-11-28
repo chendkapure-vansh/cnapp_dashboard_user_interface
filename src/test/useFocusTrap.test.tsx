@@ -16,6 +16,7 @@ function TrapContainer({ active }: { active: boolean }) {
   )
 }
 
+// Tests for keyboard focus trapping and Tab/Shift+Tab boundary cycling
 describe('useFocusTrap', () => {
   it('Tab from the last element wraps to the first', () => {
     render(<TrapContainer active={true} />)

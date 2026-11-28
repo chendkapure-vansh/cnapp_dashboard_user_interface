@@ -8,6 +8,9 @@ import { selectDashboardQuery } from '@/features/search/searchSlice'
 import { selectIsRefreshing } from '@/features/ui/uiSlice'
 import { AddWidgetDrawer } from '@/features/widget-drawer/components/AddWidgetDrawer'
 
+/**
+ * Main page view displaying navigation bar, dashboard header, categories, and widgets.
+ */
 export function DashboardPage() {
   const categories = useAppSelector(selectCategories)
   const dashboardQuery = useAppSelector(selectDashboardQuery)

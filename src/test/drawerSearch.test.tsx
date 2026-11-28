@@ -14,6 +14,7 @@ function renderPage() {
   return { ...utils, store }
 }
 
+// Tests for widget searching inside the Add Widget drawer with grouped category headings
 describe('Drawer Search (Phase 8a)', () => {
   it('typing in the drawer search shows matches across tabs with group headings', () => {
     renderPage()

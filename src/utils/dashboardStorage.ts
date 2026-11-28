@@ -1,6 +1,9 @@
 import type { Dashboard } from '@/types/dashboard.types'
 import { validateDashboard } from '@/utils/validateDashboard'
 
+/**
+ * LocalStorage key used to persist the dashboard state.
+ */
 export const STORAGE_KEY = 'cnapp.dashboard.v1'
 
 function isStorageAvailable(): boolean {
@@ -14,6 +17,10 @@ function isStorageAvailable(): boolean {
   }
 }
 
+/**
+ * Reads, parses, and validates the dashboard configuration from localStorage.
+ * Returns null if storage is unavailable, empty, or fails schema validation.
+ */
 export function loadSavedDashboard(): Dashboard | null {
   if (!isStorageAvailable()) {
     console.warn('localStorage is not available; falling back to default data.')
@@ -37,6 +44,11 @@ export function loadSavedDashboard(): Dashboard | null {
   }
 }
 
+/**
+ * Serializes and saves the dashboard configuration to localStorage.
+ *
+ * @param dashboard - Validated dashboard state to persist
+ */
 export function saveDashboard(dashboard: Dashboard): void {
   if (!isStorageAvailable()) {
     console.warn('localStorage is not available; cannot save dashboard.')

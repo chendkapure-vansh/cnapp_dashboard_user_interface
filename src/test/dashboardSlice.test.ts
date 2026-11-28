@@ -15,6 +15,7 @@ import {
 import type { CategoryId, TextWidget } from '@/types/dashboard.types'
 import { loadDashboard } from '@/utils/loadDashboard'
 
+// Tests for dashboardSlice reducers (addWidget, removeWidget, toggleWidget, applyDrawerChanges) and selectors
 describe('dashboardSlice and selectors', () => {
   it('initial state matches loadDashboard()', () => {
     const testStore = createAppStore()

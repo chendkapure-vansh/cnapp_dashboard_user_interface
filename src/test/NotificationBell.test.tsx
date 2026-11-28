@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { NotificationBell } from '@/features/dashboard/components/NotificationBell'
 
+// Tests for notification bell toggle, dialog content rendering, and outside/Escape dismissal
 describe('NotificationBell', () => {
   it('toggles dialog with "No new notifications", aria-expanded, and dismisses on Esc or outside click', () => {
     render(

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { filterWidgetsByQuery } from '@/utils/searchWidgets'
 
+// Tests for filterWidgetsByQuery helper function including trimming, casing, and reference stability
 describe('filterWidgetsByQuery', () => {
   const widgets = [
     { name: 'Cloud Accounts' },

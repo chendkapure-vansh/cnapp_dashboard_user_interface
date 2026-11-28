@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createAppStore } from '@/app/store'
 import { RefreshButton } from '@/features/dashboard/components/RefreshButton'
 
+// Tests for dashboard refresh button states, aria-busy attribute, simulated delay, and data invariance
 describe('RefreshButton', () => {
   beforeEach(() => {
     vi.useFakeTimers()

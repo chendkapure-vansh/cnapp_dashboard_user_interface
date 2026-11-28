@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createAppStore } from '@/app/store'
 import { useSimulatedRefresh } from '@/features/ui/hooks/useSimulatedRefresh'
 
+// Tests for useSimulatedRefresh timing, concurrent call guards, and timer cleanup on unmount
 describe('useSimulatedRefresh', () => {
   beforeEach(() => {
     vi.useFakeTimers()

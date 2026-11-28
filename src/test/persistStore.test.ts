@@ -7,6 +7,7 @@ import { setTimeRange } from '@/features/ui/uiSlice'
 import { openDrawer } from '@/features/widget-drawer/drawerSlice'
 import { STORAGE_KEY } from '@/utils/dashboardStorage'
 
+// Tests for dashboard persistence to localStorage, debounce handling, and ignoring non-dashboard slice updates
 describe('persistStore', () => {
   beforeEach(() => {
     vi.useFakeTimers()

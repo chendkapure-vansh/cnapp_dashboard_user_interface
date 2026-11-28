@@ -14,6 +14,7 @@ function renderPage() {
   return { ...utils, store }
 }
 
+// Tests for top bar search filtering of widgets and empty search states
 describe('Dashboard Search (Phase 8b)', () => {
   it('typing in the top bar hides non-matching cards and sections, hides placeholders', () => {
     renderPage()

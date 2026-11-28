@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { createAppStore } from '@/app/store'
 import { TopBar } from '@/features/dashboard/components/TopBar'
 
+// Tests verifying that clicking Home breadcrumb scrolls to the top of the window
 describe('TopBar Home button', () => {
   it('calls window.scrollTo when clicking Home breadcrumb', () => {
     const scrollToMock = vi.fn()

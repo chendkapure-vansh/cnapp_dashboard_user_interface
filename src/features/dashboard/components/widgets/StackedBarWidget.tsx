@@ -11,6 +11,9 @@ interface StackedBarWidgetProps {
   widget: StackedBarWidgetType
 }
 
+/**
+ * Renders a segmented horizontal progress bar with hover tooltips and category legends.
+ */
 export function StackedBarWidget({ widget }: StackedBarWidgetProps) {
   const sum = sumSegments(widget.segments)
   if (widget.segments.length === 0 || sum === 0) {

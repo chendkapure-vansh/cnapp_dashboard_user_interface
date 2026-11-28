@@ -5,6 +5,7 @@ import {
   validateDashboard,
 } from '@/utils/validateDashboard'
 
+// Tests for dashboard schema validation, type checks, duplicate ID detection, and error paths
 describe('validateDashboard and loadDashboard', () => {
   it('validates the real dashboard.json successfully via loadDashboard', () => {
     const dashboard = loadDashboard()

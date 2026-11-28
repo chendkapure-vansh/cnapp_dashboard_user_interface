@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { createAppStore } from '@/app/store'
 import { DrawerTabs } from '@/features/widget-drawer/components/DrawerTabs'
 
+// Tests for WAI-ARIA tablist roving tabindex and arrow key navigation in drawer tabs
 describe('DrawerTabs keyboard navigation (WAI-ARIA tabs)', () => {
   it('ArrowRight and ArrowLeft move the selected tab and roving focus', () => {
     const store = createAppStore()

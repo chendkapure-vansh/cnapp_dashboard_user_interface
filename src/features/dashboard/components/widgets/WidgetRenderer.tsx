@@ -3,12 +3,14 @@ import { EmptyWidget } from '@/features/dashboard/components/widgets/EmptyWidget
 import { TextWidget } from '@/features/dashboard/components/widgets/TextWidget'
 import type { Widget } from '@/types/dashboard.types'
 
+// Lazy load chart components to keep large Recharts library out of the initial bundle
 const LazyDonutWidget = lazy(() =>
   import('@/features/dashboard/components/widgets/DonutWidget').then((m) => ({
     default: m.DonutWidget,
   }))
 )
 
+// Lazy load stacked bar widget to optimize code splitting and chunk size
 const LazyStackedBarWidget = lazy(() =>
   import('@/features/dashboard/components/widgets/StackedBarWidget').then(
     (m) => ({
@@ -32,6 +34,9 @@ interface WidgetRendererProps {
   widget: Widget
 }
 
+/**
+ * Dynamically renders the appropriate widget content component based on widget.type.
+ */
 export function WidgetRenderer({ widget }: WidgetRendererProps) {
   switch (widget.type) {
     case 'donut':

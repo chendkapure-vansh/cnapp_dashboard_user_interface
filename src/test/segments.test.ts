@@ -5,6 +5,7 @@ import {
 } from '@/features/dashboard/utils/segments'
 import type { Segment } from '@/types/dashboard.types'
 
+// Tests for segment utility functions sumSegments and getSegmentPercent
 describe('segments utils', () => {
   it('sumSegments calculates total value of segments correctly', () => {
     const segments: Segment[] = [

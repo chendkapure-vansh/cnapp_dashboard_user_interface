@@ -4,6 +4,9 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { addDraftWidget } from '@/features/widget-drawer/drawerSlice'
 import { selectActiveTab } from '@/features/widget-drawer/selectors'
 
+/**
+ * Collapsible form inside the drawer allowing creation of new custom text widgets.
+ */
 export function CreateWidgetForm() {
   const dispatch = useAppDispatch()
   const activeTab = useAppSelector(selectActiveTab)

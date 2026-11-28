@@ -12,6 +12,9 @@ interface DonutWidgetProps {
   widget: DonutWidgetType
 }
 
+/**
+ * Renders a circular Donut chart with total count at center, hovered segment text above, and legend.
+ */
 export function DonutWidget({ widget }: DonutWidgetProps) {
   const [hoveredSegment, setHoveredSegment] = useState<Segment | null>(null)
 

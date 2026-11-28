@@ -13,6 +13,11 @@ const rootReducer = combineReducers({
   ui: uiReducer,
 })
 
+/**
+ * Creates and configures a new Redux store instance with the root reducer.
+ *
+ * @param preloadedState - Optional initial state for testing or hydration
+ */
 export function createAppStore(preloadedState?: Record<string, unknown>) {
   return configureStore({
     reducer: rootReducer,
@@ -21,12 +26,27 @@ export function createAppStore(preloadedState?: Record<string, unknown>) {
 }
 
 const savedDashboard = loadSavedDashboard()
+
+/**
+ * Singleton Redux store initialized with persisted dashboard data if available.
+ */
 export const store = createAppStore(
   savedDashboard ? { dashboard: savedDashboard } : undefined
 )
 
 persistDashboard(store)
 
+/**
+ * Store instance type returned by createAppStore.
+ */
 export type AppStore = ReturnType<typeof createAppStore>
+
+/**
+ * Inferred root state type containing all slice reducers.
+ */
 export type RootState = ReturnType<typeof rootReducer>
+
+/**
+ * Inferred dispatch type from the primary store instance.
+ */
 export type AppDispatch = typeof store.dispatch

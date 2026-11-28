@@ -1,6 +1,9 @@
 import { RotateCw } from 'lucide-react'
 import { useSimulatedRefresh } from '@/features/ui/hooks/useSimulatedRefresh'
 
+/**
+ * Header button triggering simulated dashboard refresh with spinning animation.
+ */
 export function RefreshButton() {
   const { isRefreshing, refresh } = useSimulatedRefresh()
 

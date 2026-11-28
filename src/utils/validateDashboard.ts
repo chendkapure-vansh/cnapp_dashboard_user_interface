@@ -11,6 +11,10 @@ import type {
   Widget,
 } from '@/types/dashboard.types'
 
+/**
+ * Error thrown when a dashboard object violates the expected schema.
+ * Contains the object path where the validation failed.
+ */
 export class DashboardValidationError extends Error {
   readonly path: string
 
@@ -105,6 +109,7 @@ function validateBaseWidget(
   seenWidgetIds: Set<string>
 ): { id: string; name: string; isActive: boolean } {
   const id = assertString(input.id, `${path}.id`, 'id')
+  // Ensure every widget ID is unique across all categories to prevent state conflicts
   if (seenWidgetIds.has(id)) {
     throw new DashboardValidationError(
       `Duplicate widget id "${id}"`,
@@ -191,6 +196,7 @@ function validateCategory(
       `${path}.id`
     )
   }
+  // Guard against duplicate category IDs
   if (seenCategoryIds.has(id)) {
     throw new DashboardValidationError(
       `Duplicate category id "${id}"`,
@@ -221,6 +227,13 @@ function validateCategory(
   }
 }
 
+/**
+ * Validates an untrusted input against the full Dashboard data schema.
+ * Throws DashboardValidationError if structure, categories, widgets, or segment types are invalid.
+ *
+ * @param input - Raw data from localStorage or imported JSON
+ * @returns Fully validated Dashboard object
+ */
 export function validateDashboard(input: unknown): Dashboard {
   if (!isRecord(input)) {
     throw new DashboardValidationError(

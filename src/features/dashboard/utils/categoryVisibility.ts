@@ -1,6 +1,13 @@
 import type { Category } from '@/types/dashboard.types'
 import { filterWidgetsByQuery } from '@/utils/searchWidgets'
 
+/**
+ * Determines whether a dashboard category section should be visible based on search query and widgets.
+ * Hides empty ticket categories by default unless they have active widgets.
+ *
+ * @param category - Category to check
+ * @param searchQuery - Current search query string
+ */
 export function shouldShowCategory(
   category: Category,
   searchQuery: string = ''

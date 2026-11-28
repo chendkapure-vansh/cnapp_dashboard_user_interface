@@ -8,6 +8,7 @@ import {
   toggleDraftWidget,
 } from '@/features/widget-drawer/drawerSlice'
 
+// Tests for drawer state, active tab switching, staged checkboxes, and draft widget creation
 describe('drawerSlice', () => {
   it('openDrawer sets isOpen to true, sets activeTab, and clears drafts', () => {
     const store = createAppStore()

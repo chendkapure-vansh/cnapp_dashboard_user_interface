@@ -9,6 +9,9 @@ import {
 } from '@/features/ui/timeRanges'
 import { selectTimeRange, setTimeRange } from '@/features/ui/uiSlice'
 
+/**
+ * Dropdown component for filtering the dashboard time interval with keyboard support.
+ */
 export function TimeRangeDropdown() {
   const dispatch = useAppDispatch()
   const currentTimeRange = useAppSelector(selectTimeRange)

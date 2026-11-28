@@ -4,6 +4,9 @@ interface EmptyWidgetProps {
   message: string
 }
 
+/**
+ * Placeholder view rendered when a chart has no available data.
+ */
 export function EmptyWidget({ message }: EmptyWidgetProps) {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center p-4 text-center">

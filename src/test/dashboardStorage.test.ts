@@ -6,6 +6,7 @@ import {
 } from '@/utils/dashboardStorage'
 import { loadDashboard } from '@/utils/loadDashboard'
 
+// Tests for localStorage persistence, schema validation fallback, and clearing persisted data
 describe('dashboardStorage', () => {
   beforeEach(() => {
     window.localStorage.clear()

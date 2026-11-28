@@ -5,6 +5,9 @@ import { setActiveTab } from '@/features/widget-drawer/drawerSlice'
 import { selectActiveTab } from '@/features/widget-drawer/selectors'
 import type { CategoryId } from '@/types/dashboard.types'
 
+/**
+ * Category tab bar for the drawer with keyboard arrow navigation and ARIA tab roles.
+ */
 export function DrawerTabs() {
   const dispatch = useAppDispatch()
   const categories = useAppSelector(selectCategories)

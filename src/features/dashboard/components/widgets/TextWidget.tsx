@@ -2,6 +2,9 @@ interface TextWidgetProps {
   text: string
 }
 
+/**
+ * Displays user-defined textual notes within a widget card container.
+ */
 export function TextWidget({ text }: TextWidgetProps) {
   return (
     <div className="flex h-full w-full items-center p-2">

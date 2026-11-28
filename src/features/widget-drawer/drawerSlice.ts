@@ -1,6 +1,9 @@
 import { createSlice, nanoid, type PayloadAction } from '@reduxjs/toolkit'
 import type { CategoryId } from '@/types/dashboard.types'
 
+/**
+ * Represents a newly authored widget held in drawer draft state before confirmation.
+ */
 export interface DraftWidget {
   id: string
   categoryId: CategoryId
@@ -8,6 +11,9 @@ export interface DraftWidget {
   text: string
 }
 
+/**
+ * State for the Add Widget sliding drawer, active category tab, and unconfirmed drafts.
+ */
 export interface DrawerState {
   isOpen: boolean
   activeTab: CategoryId
@@ -35,6 +41,9 @@ interface AddDraftWidgetActionPayload {
   text: string
 }
 
+/**
+ * Redux slice handling the widget management drawer and its draft changes.
+ */
 export const drawerSlice = createSlice({
   name: 'drawer',
   initialState,
@@ -42,11 +51,13 @@ export const drawerSlice = createSlice({
     openDrawer(state, action: PayloadAction<CategoryId>) {
       state.isOpen = true
       state.activeTab = action.payload
+      // Reset draft edits whenever drawer is opened
       state.draftActive = {}
       state.draftNewWidgets = []
     },
     closeDrawer(state) {
       state.isOpen = false
+      // Discard unconfirmed drafts on close/cancel
       state.draftActive = {}
       state.draftNewWidgets = []
     },
@@ -79,6 +90,7 @@ export const drawerSlice = createSlice({
         })
         state.draftActive[id] = true
       },
+      // Keep ID generation pure via nanoid in action preparation
       prepare(payload: AddDraftWidgetPreparePayload) {
         return {
           payload: {

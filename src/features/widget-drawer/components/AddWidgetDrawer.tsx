@@ -25,7 +25,7 @@ function DrawerContent({ onClose }: DrawerContentProps) {
   useFocusTrap(panelRef, true)
 
   useEffect(() => {
-    // Lock body scroll
+    // Lock body scroll to prevent background content from scrolling while drawer is open
     const originalOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
 
@@ -39,6 +39,7 @@ function DrawerContent({ onClose }: DrawerContentProps) {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => {
+      // Restore previous body scroll style upon closing or unmounting
       document.body.style.overflow = originalOverflow
       window.removeEventListener('keydown', handleKeyDown)
     }
@@ -88,6 +89,9 @@ function DrawerContent({ onClose }: DrawerContentProps) {
   )
 }
 
+/**
+ * Slide-over drawer container allowing users to manage widgets and add new custom text widgets.
+ */
 export function AddWidgetDrawer() {
   const dispatch = useAppDispatch()
   const isOpen = useAppSelector(selectIsDrawerOpen)

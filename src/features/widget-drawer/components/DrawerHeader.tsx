@@ -2,6 +2,9 @@ import { X } from 'lucide-react'
 import { useAppDispatch } from '@/app/hooks'
 import { closeDrawer } from '@/features/widget-drawer/drawerSlice'
 
+/**
+ * Header of the Add Widget drawer with title and dismiss button.
+ */
 export function DrawerHeader() {
   const dispatch = useAppDispatch()
 

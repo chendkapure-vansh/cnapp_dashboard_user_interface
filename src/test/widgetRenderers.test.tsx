@@ -10,6 +10,7 @@ import type {
   TextWidget,
 } from '@/types/dashboard.types'
 
+// Tests for rendering Donut, StackedBar, Empty, and Text widgets with accurate totals and legends
 describe('WidgetRenderers', () => {
   it('Donut shows its total ("2", "9659") and legend text', async () => {
     const donut1: DonutWidget = {

@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { createAppStore } from '@/app/store'
 import { TimeRangeDropdown } from '@/features/dashboard/components/TimeRangeDropdown'
 
+// Tests for time filter dropdown rendering, keyboard selection, and outside/Escape closing
 describe('TimeRangeDropdown', () => {
   function renderDropdown() {
     const store = createAppStore()

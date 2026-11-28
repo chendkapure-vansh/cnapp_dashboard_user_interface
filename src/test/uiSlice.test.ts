@@ -8,6 +8,7 @@ import {
   uiSlice,
 } from '@/features/ui/uiSlice'
 
+// Tests for uiSlice time range selection, refresh state reducers, and selectors
 describe('uiSlice', () => {
   it('has expected default state', () => {
     const state = uiSlice.reducer(undefined, { type: '@@INIT' })

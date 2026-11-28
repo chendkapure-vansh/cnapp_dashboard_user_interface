@@ -5,6 +5,9 @@ interface DrawerSearchProps {
   onQueryChange: (query: string) => void
 }
 
+/**
+ * Search input field within the drawer for filtering available widgets across categories.
+ */
 export function DrawerSearch({ query, onQueryChange }: DrawerSearchProps) {
   return (
     <div className="relative mb-3 w-full">

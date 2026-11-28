@@ -9,6 +9,9 @@ interface WidgetCardProps {
   widget: Widget
 }
 
+/**
+ * Card container for a widget displaying its title, remove button, and rendered chart/content.
+ */
 export function WidgetCard({ categoryId, widget }: WidgetCardProps) {
   const dispatch = useAppDispatch()
 

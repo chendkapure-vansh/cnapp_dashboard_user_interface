@@ -13,6 +13,9 @@ interface WidgetChecklistProps {
   searchQuery: string
 }
 
+/**
+ * Interactive checklist displaying widgets for the active category or grouped search results.
+ */
 export function WidgetChecklist({
   activeTab,
   searchQuery,

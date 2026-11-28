@@ -4,6 +4,9 @@ import { RefreshButton } from '@/features/dashboard/components/RefreshButton'
 import { TimeRangeDropdown } from '@/features/dashboard/components/TimeRangeDropdown'
 import { openDrawer } from '@/features/widget-drawer/drawerSlice'
 
+/**
+ * Top header of the dashboard page with title, global Add Widget action, refresh, and time filter.
+ */
 export function DashboardHeader() {
   const dispatch = useAppDispatch()
 

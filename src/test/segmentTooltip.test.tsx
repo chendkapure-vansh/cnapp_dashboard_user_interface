@@ -4,6 +4,7 @@ import { StackedBarWidget } from '@/features/dashboard/components/widgets/Stacke
 import { formatSegmentTooltip } from '@/features/dashboard/utils/segments'
 import type { Segment, StackedBarWidget as StackedBarWidgetType } from '@/types/dashboard.types'
 
+// Tests for tooltip string formatting and stacked bar segment title attributes
 describe('formatSegmentTooltip and StackedBarWidget tooltips', () => {
   it('formatSegmentTooltip handles normal case, zero sum, and one-decimal rounding', () => {
     const seg: Segment = { label: 'Critical', value: 9, color: 'darkRed' }

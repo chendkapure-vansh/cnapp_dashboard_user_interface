@@ -6,6 +6,12 @@ import {
   startRefresh,
 } from '@/features/ui/uiSlice'
 
+/**
+ * Hook managing simulated dashboard refresh with spinning indicator and auto-finish timeout.
+ * Protects against multiple simultaneous triggers and cleans up timers on unmount.
+ *
+ * @param durationMs - Duration of the simulated refresh in milliseconds
+ */
 export function useSimulatedRefresh(durationMs = 600): {
   isRefreshing: boolean
   refresh: () => void
@@ -14,6 +20,7 @@ export function useSimulatedRefresh(durationMs = 600): {
   const isRefreshing = useAppSelector(selectIsRefreshing)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
+  // Clear timeout on unmount to prevent setting state on unmounted components
   useEffect(() => {
     return () => {
       if (timerRef.current !== null) {

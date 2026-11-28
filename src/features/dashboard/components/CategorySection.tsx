@@ -10,6 +10,9 @@ interface CategorySectionProps {
   category: Category
 }
 
+/**
+ * Renders a categorized section containing widget cards and an add-widget placeholder.
+ */
 export function CategorySection({ category }: CategorySectionProps) {
   const activeWidgets = useAppSelector((state) =>
     selectActiveWidgets(state, category.id)

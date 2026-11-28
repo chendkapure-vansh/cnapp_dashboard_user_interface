@@ -8,6 +8,9 @@ import type {
 } from '@/types/dashboard.types'
 import { loadDashboard } from '@/utils/loadDashboard'
 
+/**
+ * State shape for the dashboard slice holding categories and widgets.
+ */
 export type DashboardState = Dashboard
 
 const initialState: DashboardState = loadDashboard()
@@ -30,6 +33,9 @@ interface WidgetTargetPayload {
   widgetId: string
 }
 
+/**
+ * Payload representing a newly drafted widget to append to the dashboard.
+ */
 export interface NewDrawerWidgetPayload {
   categoryId: CategoryId
   name: string
@@ -37,6 +43,9 @@ export interface NewDrawerWidgetPayload {
   id: string
 }
 
+/**
+ * Payload dispatched when applying confirmed changes from the widget drawer.
+ */
 export interface ApplyDrawerChangesPayload {
   activeStates: Record<string, boolean>
   newWidgets: NewDrawerWidgetPayload[]
@@ -54,6 +63,9 @@ function findWidgetInCategory(
   return category.widgets.find((w) => w.id === widgetId)
 }
 
+/**
+ * Redux slice managing dashboard categories, widgets, active status, and additions.
+ */
 export const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
@@ -80,6 +92,7 @@ export const dashboardSlice = createSlice({
 
         category.widgets.push(newWidget)
       },
+      // Generate ID in prepare callback to keep reducer pure and deterministic
       prepare(payload: AddWidgetPreparePayload) {
         return {
           payload: {
@@ -101,6 +114,7 @@ export const dashboardSlice = createSlice({
       if (!widget) {
         return
       }
+      // Set isActive false instead of deleting so the drawer checklist can re-enable it
       widget.isActive = false
     },
     toggleWidget(state, action: PayloadAction<WidgetTargetPayload>) {

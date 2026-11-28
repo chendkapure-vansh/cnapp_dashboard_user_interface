@@ -6,6 +6,9 @@ import {
   setDashboardQuery,
 } from '@/features/search/searchSlice'
 
+/**
+ * Sticky top navigation bar containing breadcrumbs, search input, notifications, and avatar.
+ */
 export function TopBar() {
   const dispatch = useAppDispatch()
   const dashboardQuery = useAppSelector(selectDashboardQuery)

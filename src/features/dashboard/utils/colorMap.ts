@@ -11,6 +11,9 @@ const COLOR_MAP: Record<ColorKey, string> = {
   grey: '#c9ced6',
 }
 
+/**
+ * Maps a semantic color key to its corresponding hexadecimal color value.
+ */
 export function getColorHex(color: ColorKey): string {
   return COLOR_MAP[color] ?? '#c9ced6'
 }

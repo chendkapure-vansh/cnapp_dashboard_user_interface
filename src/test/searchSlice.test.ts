@@ -5,6 +5,7 @@ import {
   setDashboardQuery,
 } from '@/features/search/searchSlice'
 
+// Tests for searchSlice initial query state and setDashboardQuery action
 describe('searchSlice', () => {
   it('default dashboardQuery is empty', () => {
     const store = createAppStore()
