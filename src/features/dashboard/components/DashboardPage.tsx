@@ -5,11 +5,13 @@ import { TopBar } from '@/features/dashboard/components/TopBar'
 import { selectCategories } from '@/features/dashboard/selectors'
 import { shouldShowCategory } from '@/features/dashboard/utils/categoryVisibility'
 import { selectDashboardQuery } from '@/features/search/searchSlice'
+import { selectIsRefreshing } from '@/features/ui/uiSlice'
 import { AddWidgetDrawer } from '@/features/widget-drawer/components/AddWidgetDrawer'
 
 export function DashboardPage() {
   const categories = useAppSelector(selectCategories)
   const dashboardQuery = useAppSelector(selectDashboardQuery)
+  const isRefreshing = useAppSelector(selectIsRefreshing)
 
   const visibleCategories = categories.filter((cat) =>
     shouldShowCategory(cat, dashboardQuery)
@@ -22,7 +24,10 @@ export function DashboardPage() {
     <div className="min-h-screen bg-canvas font-sans text-slate-900">
       <TopBar />
 
-      <main className="mx-auto max-w-[1440px] space-y-6 px-4 pb-12 sm:px-6">
+      <main
+        aria-busy={isRefreshing ? 'true' : undefined}
+        className="mx-auto max-w-[1440px] space-y-6 px-4 pb-12 sm:px-6"
+      >
         <DashboardHeader />
 
         {hasNoMatches ? (
@@ -34,7 +39,11 @@ export function DashboardPage() {
             No widgets match your search.
           </div>
         ) : (
-          <div className="space-y-6">
+          <div
+            className={`space-y-6 transition-opacity duration-200 ${
+              isRefreshing ? 'opacity-60' : 'opacity-100'
+            }`}
+          >
             {visibleCategories.map((category) => (
               <CategorySection key={category.id} category={category} />
             ))}

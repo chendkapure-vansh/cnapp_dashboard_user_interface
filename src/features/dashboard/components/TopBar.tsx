@@ -1,5 +1,6 @@
-import { Bell, Search } from 'lucide-react'
+import { Search } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { NotificationBell } from '@/features/dashboard/components/NotificationBell'
 import {
   selectDashboardQuery,
   setDashboardQuery,
@@ -9,10 +10,20 @@ export function TopBar() {
   const dispatch = useAppDispatch()
   const dashboardQuery = useAppSelector(selectDashboardQuery)
 
+  function handleHomeClick() {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <header className="flex h-14 w-full items-center justify-between border-b border-grey/40 bg-white px-6">
+    <header className="sticky top-0 z-10 flex h-14 w-full items-center justify-between border-b border-grey/40 bg-white px-6">
       <nav aria-label="Breadcrumb" className="text-xs text-grey">
-        <span className="text-slate-400">Home</span>
+        <button
+          type="button"
+          onClick={handleHomeClick}
+          className="text-slate-400 transition hover:text-slate-600 focus:outline-none"
+        >
+          Home
+        </button>
         <span className="mx-2 text-slate-400">&gt;</span>
         <span className="font-semibold text-navy">Dashboard V2</span>
       </nav>
@@ -34,13 +45,7 @@ export function TopBar() {
       </div>
 
       <div className="flex items-center gap-4">
-        <button
-          type="button"
-          aria-label="Notifications"
-          className="rounded-full p-1.5 text-slate-500 transition hover:bg-canvas hover:text-navy"
-        >
-          <Bell size={18} />
-        </button>
+        <NotificationBell />
 
         <div
           role="img"

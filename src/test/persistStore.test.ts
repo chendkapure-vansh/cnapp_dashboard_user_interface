@@ -3,6 +3,7 @@ import { persistDashboard } from '@/app/persistStore'
 import { createAppStore } from '@/app/store'
 import { removeWidget } from '@/features/dashboard/dashboardSlice'
 import { setDashboardQuery } from '@/features/search/searchSlice'
+import { setTimeRange } from '@/features/ui/uiSlice'
 import { openDrawer } from '@/features/widget-drawer/drawerSlice'
 import { STORAGE_KEY } from '@/utils/dashboardStorage'
 
@@ -71,12 +72,13 @@ describe('persistStore', () => {
     expect(w2.isActive).toBe(false)
   })
 
-  it('a change to the drawer or search slice does not save', () => {
+  it('a change to the drawer, search, or ui slice does not save', () => {
     const store = createAppStore()
     persistDashboard(store, 300)
 
     store.dispatch(openDrawer('cwpp'))
     store.dispatch(setDashboardQuery('alerts'))
+    store.dispatch(setTimeRange('last7d'))
 
     vi.advanceTimersByTime(500)
 

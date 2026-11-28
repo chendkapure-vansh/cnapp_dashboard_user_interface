@@ -1,6 +1,7 @@
 import { EmptyWidget } from '@/features/dashboard/components/widgets/EmptyWidget'
 import { getColorHex } from '@/features/dashboard/utils/colorMap'
 import {
+  formatSegmentTooltip,
   getSegmentPercent,
   sumSegments,
 } from '@/features/dashboard/utils/segments'
@@ -35,6 +36,7 @@ export function StackedBarWidget({ widget }: StackedBarWidgetProps) {
             <div
               key={seg.label}
               data-testid={`bar-segment-${seg.label}`}
+              title={formatSegmentTooltip(seg, sum)}
               style={{
                 width: `${percent}%`,
                 backgroundColor: getColorHex(seg.color),

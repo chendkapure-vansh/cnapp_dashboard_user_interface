@@ -25,6 +25,7 @@ export function WidgetCard({ categoryId, widget }: WidgetCardProps) {
           type="button"
           onClick={handleRemove}
           aria-label={`Remove ${widget.name}`}
+          title={`Remove ${widget.name}`}
           className="rounded p-1 text-slate-400 opacity-0 transition hover:bg-slate-100 hover:text-slate-700 focus-visible:opacity-100 group-hover:opacity-100"
         >
           <X size={14} />

@@ -4,9 +4,8 @@ import { closeDrawer } from '@/features/widget-drawer/drawerSlice'
 
 export function DrawerFooter() {
   const dispatch = useAppDispatch()
-  const dashboard = useAppSelector((state) => state.dashboard)
-  const drawer = useAppSelector((state) => state.drawer)
-  const search = useAppSelector((state) => state.search)
+  const draftActive = useAppSelector((s) => s.drawer.draftActive)
+  const draftNewWidgets = useAppSelector((s) => s.drawer.draftNewWidgets)
 
   return (
     <div className="flex items-center justify-end gap-3 border-t border-slate-200 bg-white p-4">
@@ -20,7 +19,11 @@ export function DrawerFooter() {
 
       <button
         type="button"
-        onClick={() => confirmDrawer(dispatch, { dashboard, drawer, search })}
+        onClick={() =>
+          confirmDrawer(dispatch, {
+            drawer: { draftActive, draftNewWidgets },
+          } as any)
+        }
         className="rounded-md bg-navy px-5 py-1.5 text-xs font-semibold text-white shadow-sm transition hover:bg-navy/90"
       >
         Confirm

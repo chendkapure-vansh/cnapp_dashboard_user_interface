@@ -13,3 +13,11 @@ export function getSegmentPercent(value: number, sum: number): number {
   }
   return (value / sum) * 100
 }
+
+export function formatSegmentTooltip(segment: Segment, sum: number): string {
+  if (sum <= 0) {
+    return `${segment.label}: ${segment.value}`
+  }
+  const pct = getSegmentPercent(segment.value, sum).toFixed(1)
+  return `${segment.label}: ${segment.value} (${pct}%)`
+}

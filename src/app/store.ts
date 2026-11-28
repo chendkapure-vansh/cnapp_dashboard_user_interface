@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { persistDashboard } from '@/app/persistStore'
 import dashboardReducer from '@/features/dashboard/dashboardSlice'
 import searchReducer from '@/features/search/searchSlice'
+import uiReducer from '@/features/ui/uiSlice'
 import drawerReducer from '@/features/widget-drawer/drawerSlice'
 import { loadSavedDashboard } from '@/utils/dashboardStorage'
 
@@ -9,6 +10,7 @@ const rootReducer = combineReducers({
   dashboard: dashboardReducer,
   drawer: drawerReducer,
   search: searchReducer,
+  ui: uiReducer,
 })
 
 export function createAppStore(preloadedState?: Record<string, unknown>) {

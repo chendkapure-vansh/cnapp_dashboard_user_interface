@@ -14,6 +14,7 @@ export function DrawerHeader() {
         type="button"
         onClick={() => dispatch(closeDrawer())}
         aria-label="Close"
+        title="Close"
         className="rounded p-1 text-slate-300 transition hover:bg-white/10 hover:text-white"
       >
         <X size={18} />
