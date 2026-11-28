@@ -2,6 +2,8 @@
 
 CNAPP Dashboard is a category-based cloud security posture and workload dashboard driven by dynamic JSON configuration. It provides visualization widgets across security domains (such as CSPM, CWPP, and Registry Scan), allowing security teams to inspect compliance and risk metrics, add custom notes, manage widget visibility via an interactive drawer, and search widgets across categories with full state persistence.
 
+**Live demo:** [cnapp-dashboard-user-interface.vercel.app](https://cnapp-dashboard-user-interface.vercel.app/)
+
 ## Screenshots
 
 - **Dashboard Overview**: ![Dashboard Overview](src/docs/screenshots/dashboard.png)
